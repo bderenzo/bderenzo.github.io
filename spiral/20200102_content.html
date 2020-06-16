@@ -73,8 +73,11 @@ nav a {
   margin-right: 10px;
 }
 
+p {
+  text-align: justify;
+}
+
 hr {
-  color: #000000;
   text-align: center;
   border: none;
 }
@@ -160,124 +163,54 @@ footer {
   </header>
   <main>
 <content>
-<h1 id="markdown-syntax">Markdown syntax</h1>
-<h2 id="summary">Summary</h2>
+<h1 id="content">Content</h1>
+<h2 id="rules">Rules</h2>
+<p>In spiral, everything is posts.</p>
 <ul>
-<li><a href="#emphasis">Emphasis</a></li>
-<li><a href="#lists">Lists</a></li>
-<li><a href="#code">Code</a></li>
-<li><a href="#links">Links</a></li>
-<li><a href="#images">Images</a></li>
-<li><a href="#tables">Tables</a></li>
+<li>You want to add an external links? It's in a post.</li>
+<li>You want to add a cateory? It's in a post.</li>
 </ul>
-<h2 id="emphasis">Emphasis</h2>
-<p>Paragraphs are separated by a blank line.</p>
-<p>2nd paragraph. <em>Italic</em>, <strong>bold</strong>, <code>monospace</code>. Itemized lists look like:</p>
-<blockquote>
-<p>Block quotes are written like so.</p>
-</blockquote>
-<h2 id="lists">Lists</h2>
-<p>Here is a simple list:</p>
+<h2 id="post">Post</h2>
+<h3 id="create">Create</h3>
+<p>To create a new post, just add a new file in <code>posts</code> directory. Filename should respect the following pattern <code>YYYYMMDD_postname.md</code>.</p>
+<h3 id="order">Order</h3>
+<p>Post order and article date are determined by post filename.</p>
+<h3 id="content-1">Content</h3>
+<p>Post content is:</p>
 <ul>
-<li>this one</li>
-<li>that one</li>
-<li>the other one</li>
+<li>A header, look at next paragraph</li>
+<li>A content, written in <a href="./20200102_markdown.html">markdown</a></li>
 </ul>
-<p>Here is a numbered list:</p>
-<ol>
-<li>first item</li>
-<li>second item</li>
-<li>third item</li>
-</ol>
-<p>Now a nested list:</p>
-<ol>
-<li><p>First, get these ingredients:</p>
+<h3 id="header">Header</h3>
+<p>There are 3 possible headers:</p>
 <ul>
-<li>carrots</li>
-<li>celery</li>
-<li>lentils</li>
-</ul></li>
-<li><p>Boil some water.</p></li>
-<li><p>Dump everything in the pot and follow<br />
-this algorithm:</p>
-<ul>
-<li>find wooden spoon</li>
-<li>manage pot
-<ul>
-<li>uncover pot</li>
-<li>stir</li>
-<li>cover pot</li>
-<li>balance wooden spoon precariously on pot handle</li>
-</ul></li>
-<li>wait 10 minutes</li>
-<li>goto first step (or shut off burner when done)</li>
-</ul></li>
-</ol>
-<ul>
-<li>Do not bump wooden spoon or it will fall.</li>
+<li>The static page header. Used static page like the landing page.</li>
 </ul>
-<h2 id="code">Code</h2>
-<p>Here's a code block sample:</p>
-<pre><code># Let me re-iterate ...
-for i in 1 .. 10 { do-something(i) }
+<pre><code>nav: About
+type: page
+-*-*-
 </code></pre>
-<p>As you probably guessed, indented 4 spaces. By the way, instead of indenting the block, you can use delimited blocks, if you like:</p>
-<pre><code>define foobar() {
-    print &quot;Welcome to flavor country!&quot;;
-}
+<ul>
+<li>The standard article page header. Used for categorized page like this one.</li>
+</ul>
+<pre><code>nav: Blog
+type: article
+title: My first blog post
+-*-*-
 </code></pre>
-<h2 id="links">Links</h2>
-<p>Here's a link to <a href="https://foo.bar">a website</a>. Here's a link to a <a href="local-doc.html">local doc</a>.</p>
-<h2 id="images">Images</h2>
-<p>Here is an image:</p>
-<p><img src="./images/00000000_image.jpg" alt="Working" /> <em>This is a caption</em></p>
-<h2 id="tables">Tables</h2>
-<p>Tables can look like this:</p>
-<table>
-<thead>
-<tr class="header">
-<th>size</th>
-<th>material</th>
-<th>color</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>9</td>
-<td>leather</td>
-<td>brown</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>hemp canvas</td>
-<td>natural</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>glass</td>
-<td>transparent</td>
-</tr>
-</tbody>
-</table>
-<p>You can specify alignment for each column by adding colons to separator lines. A colon at the left of the separator line will make the column left-aligned; a colon on the right of the line will make the column right-aligned; colons at both side means the column is center-aligned. You can apply span-level formatting to the content of each cell using regular Markdown syntax:</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Function name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;"><code>help()</code></td>
-<td>Display the help window.</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;"><code>destroy()</code></td>
-<td>Destroy your computer!</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>The url header. Used for external links.</li>
+</ul>
+<pre><code>nav: External
+type: url
+url: http://domain.com
+-*-*-
+</code></pre>
+<h2 id="navigation-bar">Navigation bar</h2>
+<h3 id="order-1">Order</h3>
+<p>Navigation bar item order is defined by post order too.</p>
+<h3 id="content-2">Content</h3>
+<p>Navigation bar content links are determined by posts header.</p>
 </content>
   </main>
   <footer>

@@ -73,8 +73,11 @@ nav a {
   margin-right: 10px;
 }
 
+p {
+  text-align: justify;
+}
+
 hr {
-  color: #000000;
   text-align: center;
   border: none;
 }
@@ -160,54 +163,26 @@ footer {
   </header>
   <main>
 <content>
-<h1 id="content">Content</h1>
-<h2 id="rules">Rules</h2>
-<p>In spiral, everything is posts.</p>
+<h1 id="installation">Installation</h1>
+<h2 id="requirements">Requirements</h2>
+<p>Spiral need a markdown parser in order to work.</p>
+<p>Non exhaustive list of compatible markdown parser:</p>
 <ul>
-<li>You want to add an external links? It's in a post.</li>
-<li>You want to add a cateory? It's in a post.</li>
+<li>pandoc</li>
+<li>md4c</li>
+<li>markdown</li>
+<li>python3-markdown</li>
 </ul>
-<h2 id="post">Post</h2>
-<h3 id="create">Create</h3>
-<p>To create a new post, just add a new file in <code>posts</code> directory. Filename should respect the following pattern <code>YYYYMMDD_postname.md</code>.</p>
-<h3 id="order">Order</h3>
-<p>Post order and article date are determined by post filename.</p>
-<h3 id="content-1">Content</h3>
-<p>Post content is:</p>
-<ul>
-<li>A header, look at next paragraph</li>
-<li>A content, written in <a href="./20200102_markdown.html">markdown</a></li>
-</ul>
-<h3 id="header">Header</h3>
-<p>There are 3 possible headers:</p>
-<ul>
-<li>The static page header. Used static page like the landing page.</li>
-</ul>
-<pre><code>nav: About
-type: page
--*-*-
-</code></pre>
-<ul>
-<li>The standard article page header. Used for categorized page like this one.</li>
-</ul>
-<pre><code>nav: Blog
-type: article
-title: My first blog post
--*-*-
-</code></pre>
-<ul>
-<li>The url header. Used for external links.</li>
-</ul>
-<pre><code>nav: External
-type: url
-url: http://domain.com
--*-*-
-</code></pre>
-<h2 id="navigation-bar">Navigation bar</h2>
-<h3 id="order-1">Order</h3>
-<p>Navigation bar item order is defined by post order too.</p>
-<h3 id="content-2">Content</h3>
-<p>Navigation bar content links are determined by posts header.</p>
+<h2 id="download">Download</h2>
+<p>Get lastest release <a href="https://github.com/bderenzo/spiral/releases">here</a>. Download and unzip it.</p>
+<h2 id="usage">Usage</h2>
+<ol>
+<li>In a terminal, go in the created directory.</li>
+<li>Edit <code>site.conf</code> to suit your need.</li>
+<li>Run <code>./generate.sh</code></li>
+<li>Run <code>./serve.sh</code></li>
+<li>Go to <a href="http://localhost:8888">localhost:8888</a></li>
+</ol>
 </content>
   </main>
   <footer>
