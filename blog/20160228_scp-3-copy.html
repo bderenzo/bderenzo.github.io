@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon.png">
+
+  <title>
+    BDR's Lab
+  </title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="BDR's Lab">
+  <meta name="description" content="Hi! I'm a french system engineer">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BDR's Lab">
+  <meta property="og:url" content="https://bderenzo.github.io/blog">
+  <meta property="og:title" content="BDR's Lab">
+  <meta property="og:description" content="Hi! I'm a french system engineer">
+  <meta property="og:image" content="https://bderenzo.github.io/blog/https://bderenzo.github.io/blog/assets/icon.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="https://bderenzo.github.io/blog">
+  <meta property="twitter:title" content="BDR's Lab">
+  <meta property="twitter:description" content="Hi! I'm a french system engineer">
+  <meta property="twitter:image" content="https://bderenzo.github.io/blog/https://bderenzo.github.io/blog/assets/icon.png">
+
+  <style>
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  font-family:segoe ui,Roboto,Oxygen-Sans,Ubuntu,Cantarell,helvetica neue,Verdana,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+  margin: auto;
+  padding: 20px;
+  max-width: 720px;
+  text-align: left;
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
+}
+
+/* links */
+a {
+  color: #3273dc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #004669;
+}
+
+/* navigation bar */
+nav {
+  float: right;
+}
+
+nav a {
+  margin-left: 10px;
+}
+
+/* titles */
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 500;
+}
+
+h1 {
+  text-align:center;
+  padding: 40px;
+}
+
+h1 + ul {
+  list-style-type: none;
+  padding: 0px;
+  line-height: 1.65;
+}
+
+/* articles list */
+li time {
+  float: right;
+  color: gray;
+}
+
+/* article content */
+p {
+  text-align: justify;
+}
+
+/* line break */
+hr {
+  text-align: center;
+  border: none;
+}
+
+hr:before {
+  content:"***";
+  letter-spacing: 1em;
+}
+
+/* table */
+table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 7px 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th:first-child,
+td:first-child {
+  padding-left: 0;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 0;
+}
+
+/* image and caption */
+img {
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img + em {
+  margin-top: 10px;
+  display: inherit;
+  text-align: center;
+  font-size: 90%;
+  color: #808080;
+}
+
+/* code */
+code {
+  padding: 2px 4px;
+  color: #dd0011;
+  font-size: 110%;
+}
+
+pre code {
+  color: inherit;
+  background-color: #f5f5f5;
+  padding: 15px;
+  display: block;
+  overflow-x: auto;
+}
+
+/* quote */
+blockquote {
+  border-left: 1px solid #ddd;
+  padding-left: 10px;
+  font-style: italic;
+}
+
+/* footer */
+footer {
+  padding: 25px;
+  text-align: center;
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <span>BDR's Lab</span>
+    <nav>
+<a href=./home.html>Home</a>
+<a href=./tech.html>Tech</a>
+<a href=./projects.html>Projects</a>
+<a href=./life.html>Life</a>
+<a href=./about.html>About</a>
+    </nav>
+  </header>
+  <main>
+<content>
+<h1 id="copying-files">Copying files</h1>
+<h2 id="basic-operations">Basic operations</h2>
+<p>In the case of an administration sever, it is usual it can access multiples severs that can't communicate each others. The copy of files from a server to another can be problematic.</p>
+<p>It can be done by :</p>
+<ol>
+<li>Retrieving the file from a server</li>
+<li>Copying the file to the second server</li>
+</ol>
+<pre><code>scp user1@remote1:/src /tmp
+scp /tmp user2@remote2:/dst
+
++---------+      +---------+
+| remote1 |      | remote2 |
++----^----+      +----^----+
+     | scp        scp |
+     |  +----------+  |
+     +--+  admin   +--+
+        +----------+
+</code></pre>
+<h2 id="how-scp-works">How scp works</h2>
+<p>When scp is used with two remotes sever, it connect to the first and connect to the second from the first</p>
+<pre><code>scp user1@distant1:/src user2@distant2:/dst
+
++---------+    +---------+
+| remote1 +----&gt; remote2 |
++----^----+    +---------+
+     |      scp
+     |  +----------+
+     +--+  admin   |
+        +----------+
+</code></pre>
+<p>When remote servers can't communicate each others, this doesn't work...</p>
+<h2 id="the--3-solution">The -3 solution</h2>
+<p>The <strong>-3</strong> option was added with <strong>OpenSSH 5.7</strong> in 2011. It allow to copy a file from a remote to another with connection initiaated with the server running the scp command.</p>
+<pre><code>scp -3 user1@remote1:/src user2@remote2:/dst
+
++---------+      +---------+
+| remote1 |      | remote2 |
++----^----+      +----^----+
+     |     scp -3     |
+     |  +----------+  |
+     +--+  admin   +--+
+        +----------+
+</code></pre>
+<p>The <strong>-3</strong> stands for third party.</p>
+</content>
+  </main>
+  <footer>
+    Crafted using <a href='https://bderenzo.github.io/spiral/'>spiral</a>
+  </footer>
+</body>
+
+</html>
